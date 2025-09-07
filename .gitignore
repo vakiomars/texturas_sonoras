@@ -1,0 +1,26 @@
+
+# Ignorar entorno virtual
+venv/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos temporales
+*.log
+*.tmp
+
+# Archivos de Jupyter
+.ipynb_checkpoints/
+
+# Carpeta de salidas de la app
+outputs/
+
+# Librerías descargadas o temporales
+*.egg-info/
