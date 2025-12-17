@@ -16,5 +16,5 @@ else
   exit 1
 fi
 
-"$PY" -m pip install -r requirements.txt
+"$PY" -m pip install -r requirements-lite.txt
 exec "$PY" -m streamlit run src/app.py
