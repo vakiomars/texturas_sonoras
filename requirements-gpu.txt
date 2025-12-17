@@ -1,0 +1,2 @@
+# Opcional: solo si vas a correr test_gpu o experimentos con CUDA
+torch==2.5.1

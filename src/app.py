@@ -5,6 +5,7 @@ import librosa
 from dsp import (
     to_wav_bytes,
     process_natural_texture,
+    make_seamless_loop,
 )
 
 # -------- ajustes UI --------
@@ -55,6 +56,9 @@ if uploaded:
     else:
         room = 0.25; wet = 0.07; damp = 0.2
 
+    st.subheader("🔁 Loop")
+    loop_option = st.checkbox("🔁 Hacer loop seamless", value=False)
+    crossfade_ms = st.slider("Duración crossfade (ms)", 50, 500, 150)
     if st.button("✨ Procesar"):
         with st.status("Procesando…", expanded=False):
             y_out = process_natural_texture(
@@ -73,5 +77,7 @@ if uploaded:
                 damping=float(damp),
                 do_limiter=True,
             )
+            if loop_option:
+                y_out = make_seamless_loop(y_out, SR, crossfade_ms=int(crossfade_ms))
         st.audio(to_wav_bytes(y_out, SR), format="audio/wav")
         st.download_button("⬇️ Descargar WAV (24-bit/48 kHz)", to_wav_bytes(y_out, SR), file_name="textura.wav", mime="audio/wav")

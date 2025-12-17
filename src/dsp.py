@@ -187,3 +187,40 @@ def process_natural_texture(
         y2 = limiter_true_peak(y2, ceiling_db=-1.0)
 
     return normalize_peak(y2, 0.95)
+
+def make_seamless_loop(y, sr, crossfade_ms=100):
+    """
+    Ajusta un audio para que pueda repetirse en bucle sin cortes perceptibles.
+    - Busca cero-cruces.
+    - Aplica crossfade corto entre inicio y fin.
+    - Normaliza.
+    """
+    crossfade = int(sr * crossfade_ms / 1000)
+
+    # Buscar cero-cruce al inicio y fin
+    zero_in = np.where(np.sign(y[:-1]) != np.sign(y[1:]))[0]
+    if len(zero_in) == 0:
+        return y
+    start = zero_in[0]
+
+    zero_out = np.where(np.sign(y[:-1]) != np.sign(y[1:]))[0]
+    end = zero_out[-1] if len(zero_out) > 0 else len(y)
+
+    # Recortar
+    y = y[start:end]
+
+    # Crossfade
+    if len(y) < 2 * crossfade:
+        return y
+
+    fade_in = np.linspace(0, 1, crossfade)
+    fade_out = np.linspace(1, 0, crossfade)
+
+    y[:crossfade] *= fade_in
+    y[-crossfade:] *= fade_out
+    y[:crossfade] += y[-crossfade:]
+    y = y[:-crossfade]
+
+    # Normalizar
+    y = y / (np.max(np.abs(y)) + 1e-9)
+    return y.astype(np.float32)

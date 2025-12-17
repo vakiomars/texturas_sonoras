@@ -26,20 +26,49 @@ pip install -r requirements.txt
 
 Ejecuta la aplicación con:
 
-streamlit run app.py
+streamlit run src/app.py
+```
 
+## 🎛️ Uso
+
+Recomendado (one-liner):
+
+```bash
+./run.sh
+```
+
+Manual:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python -m streamlit run src/app.py
+```
+
+## 📦 Output
+
+- WAV, 48 kHz
+- Máximo de salida: 120 s
+- Input recomendado: ≤ 20 s (soporta hasta 60 s)
 📂 Estructura del Proyecto
-
 texturas_sonoras/
-│── app.py                # Interfaz principal en Streamlit
 │── requirements.txt      # Dependencias del proyecto
 │── README.md             # Este archivo
 │── .gitignore            # Archivos ignorados por git
+│── tests/
+│   └── test_gpu.py       # Script de verificación (GPU/CUDA)
 └── src/                  # Código fuente
+    │── app.py            # Interfaz principal en Streamlit (entrypoint)
+    │── dsp.py            # Procesamiento DSP (filtros, granular, export WAV)
+    │── audio_processing.py
+    │── config.py
+    │── utils.py
+    └── __init__.py
 
 ⚖️ Licencia
 
-Copyright © 2025 [Tu Nombre o Alias]
+Copyright © 2025 Andrés Mahecha
 
 Este proyecto se distribuye inicialmente bajo Copyright.
 En futuras versiones públicas pasará a un modelo de Licencia Dual (Open Source + Comercial).
