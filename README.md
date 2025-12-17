@@ -46,6 +46,13 @@ pip install -r requirements.txt
 python -m streamlit run src/app.py
 ```
 
+## Windows (sin saber código)
+
+1. Descarga el ZIP desde GitHub y extráelo.
+2. Instala Python 3.11+ (marca “Add to PATH” durante la instalación).
+3. Haz doble clic en `run_windows.bat`.
+4. Abre `http://localhost:8501` en tu navegador.
+
 ## 📦 Output
 
 - WAV, 48 kHz
