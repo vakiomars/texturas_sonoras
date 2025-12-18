@@ -20,8 +20,19 @@ python -m streamlit run src/app.py
 3. Doble clic en `run_windows.bat`.
 4. Abre `http://localhost:8501`.
 
-Linux/macOS (one-liner): `./run.sh` (crea/usa `.venv` e instala `requirements-lite.txt`).
-Stack completo (opcional): `pip install -r requirements.txt`
+### Linux/macOS (one-liner)
+
+```bash
+./run.sh
+```
+
+(crea/usa `.venv` e instala `requirements-lite.txt`).
+
+### Stack completo (opcional)
+
+```bash
+pip install -r requirements.txt
+```
 
 ## ¿Por qué hay varios `requirements`?
 
