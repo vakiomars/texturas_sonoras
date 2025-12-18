@@ -15,10 +15,17 @@ st.set_page_config(page_title="Texturas Sonoras — Prototipo Elegante", layout=
 st.title("🎶 Generador de Texturas Sonoras (Prototipo Elegante)")
 st.caption("48 kHz / 24-bit • Granular OLA Hann • Filtros fase-cero • Reverb opcional • Limitador -1 dBTP")
 
-uploaded = st.file_uploader(
-    "🎵 Sube un archivo (WAV/MP3/OGG/FLAC) (en móvil también M4A/AAC/3GP)",
-    type=None,
+uploaded_main = st.file_uploader(
+    "🎵 Sube un archivo (WAV/MP3/OGG/FLAC)",
+    type=["wav", "mp3", "ogg", "flac"],
 )
+with st.expander("📱 Android: si no te deja cargar audio…"):
+    uploaded_any = st.file_uploader(
+        "Sube el archivo desde el selector completo",
+        type=None,
+        key="uploader_any",
+    )
+uploaded = uploaded_main or uploaded_any
 
 # límites seguros de RAM (≈ 10 MB por minuto mono float32 @48 kHz)
 MAX_SECONDS = 120  # 2 min para MVP estable
@@ -31,9 +38,16 @@ def _mem_ok(target_s: int) -> bool:
 
 if uploaded:
     ext = Path(uploaded.name).suffix.lower().lstrip(".")
-    if ext not in SUPPORTED_EXTENSIONS:
-        st.error("Convierte a WAV/MP3 o exporta como WAV desde tu grabadora")
-        st.stop()
+    if uploaded_any:
+        if ext not in {"wav", "mp3", "ogg", "flac"}:
+            st.error("Convierte a WAV/MP3 o exporta como WAV desde tu grabadora")
+            st.stop()
+    else:
+        if ext not in SUPPORTED_EXTENSIONS:
+            st.error("Convierte a WAV/MP3 o exporta como WAV desde tu grabadora")
+            st.stop()
+
+    st.caption(f"Archivo: {uploaded.name} · {uploaded.size} bytes · MIME: {uploaded.type}")
 
     # Cargar a mono 48 kHz para coherencia con motores de juego
     y, sr = load_audio_uploaded(uploaded, target_sr=SR)
