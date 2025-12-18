@@ -2,14 +2,14 @@
 
 Aplicación en **Streamlit** para transformar un audio corto en una **textura sonora** usable (ambient/loop), pensada para prototipado rápido en videojuegos, cine/TV y música.
 
-## Quick Start (recomendado: `requirements-lite.txt`)
+## Quick Start (recomendado: `requirements.txt`)
 
 **Linux/macOS**
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements-lite.txt
+python -m pip install -r requirements.txt
 python -m streamlit run src/app.py
 ```
 
@@ -26,18 +26,19 @@ python -m streamlit run src/app.py
 ./run.sh
 ```
 
-(crea/usa `.venv` e instala `requirements-lite.txt`).
+(crea/usa `.venv` e instala `requirements.txt`).
 
 ### Stack completo (opcional)
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements-full.txt
 ```
 
 ## ¿Por qué hay varios `requirements`?
 
-- `requirements-lite.txt`: **camino recomendado** (más liviano) para correr la app en CPU.
-- `requirements.txt`: entorno **completo** (más pesado) usado para prototipos, notebooks y dependencias extra.
+- `requirements.txt`: **camino recomendado** (más liviano) y el que usa Streamlit Community Cloud.
+- `requirements-lite.txt`: alias local del entorno liviano (mismo contenido que `requirements.txt`).
+- `requirements-full.txt`: entorno **completo** (más pesado) para prototipos, notebooks y dependencias extra.
 - `requirements-gpu.txt`: extras **opcionales** para pruebas/experimentos en GPU (ver `tests/test_gpu.py`).
 
 ## Qué demuestra este proyecto (Blended Pareto)
@@ -62,6 +63,7 @@ Este repo aplica un enfoque **Pareto-first**: prioriza el 20% de decisiones que 
 ├── run_windows.bat
 ├── requirements-lite.txt
 ├── requirements.txt
+├── requirements-full.txt
 ├── requirements-gpu.txt
 ├── loop_test.py
 ├── data/

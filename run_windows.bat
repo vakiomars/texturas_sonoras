@@ -28,7 +28,7 @@ REM --- Upgrade pip and install dependencies (lite) ---
 %VENV_PY% -m pip install --upgrade pip
 if errorlevel 1 goto :error
 
-%VENV_PY% -m pip install -r requirements-lite.txt
+%VENV_PY% -m pip install -r requirements.txt
 if errorlevel 1 goto :error
 
 echo.
