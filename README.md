@@ -1,81 +1,78 @@
-# texturas_sonoras
-Generador de texturas sonoras
+# Texturas Sonoras — Generador de texturas (MVP)
 
-Este proyecto es un **MVP (Producto Mínimo Viable)** de una aplicación que genera **texturas sonoras** a partir de algoritmos y procesamiento de audio.
-El objetivo es ofrecer una herramienta útil para **videojuegos, cine, TV, VR/AR y producción musical**, reduciendo costos de grabación y almacenamiento.
+Aplicación en **Streamlit** para transformar un audio corto en una **textura sonora** usable (ambient/loop), pensada para prototipado rápido en videojuegos, cine/TV y música.
 
-## 🚀 Instalación
+## Quick Start (recomendado: `requirements-lite.txt`)
 
-Clona este repositorio en tu máquina local:
-
-```bash
-git clone https://github.com/vakiomars/texturas_sonoras.git
-cd texturas_sonoras
-
-Crea un entorno virtual recomendado
-
-python3 -m venv venv
-source venv/bin/activate   # En Linux/Mac
-venv\Scripts\activate      # En Windows
-
-Instala las dependencias:
-
-pip install -r requirements.txt
-
-▶️ Uso
-
-Ejecuta la aplicación con:
-
-streamlit run src/app.py
-```
-
-## 🎛️ Uso
-
-Recomendado (one-liner):
-
-```bash
-./run.sh
-```
-
-Manual:
+**Linux/macOS**
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+python -m pip install -r requirements-lite.txt
 python -m streamlit run src/app.py
 ```
 
-## Windows (sin saber código)
+**Windows (sin saber código)**
 
 1. Descarga el ZIP desde GitHub y extráelo.
-2. Instala Python 3.11+ (marca “Add to PATH” durante la instalación).
-3. Haz doble clic en `run_windows.bat`.
-4. Abre `http://localhost:8501` en tu navegador.
+2. Instala Python 3.11+ (marca “Add to PATH”).
+3. Doble clic en `run_windows.bat`.
+4. Abre `http://localhost:8501`.
 
-## 📦 Output
+Linux/macOS (one-liner): `./run.sh` (crea/usa `.venv` e instala `requirements-lite.txt`).
+Stack completo (opcional): `pip install -r requirements.txt`
 
-- WAV, 48 kHz
-- Máximo de salida: 120 s
-- Input recomendado: ≤ 20 s (soporta hasta 60 s)
-📂 Estructura del Proyecto
-texturas_sonoras/
-│── requirements.txt      # Dependencias del proyecto
-│── README.md             # Este archivo
-│── .gitignore            # Archivos ignorados por git
-│── tests/
-│   └── test_gpu.py       # Script de verificación (GPU/CUDA)
-└── src/                  # Código fuente
-    │── app.py            # Interfaz principal en Streamlit (entrypoint)
-    │── dsp.py            # Procesamiento DSP (filtros, granular, export WAV)
-    │── audio_processing.py
-    │── config.py
-    │── utils.py
-    └── __init__.py
+## ¿Por qué hay varios `requirements`?
 
-⚖️ Licencia
+- `requirements-lite.txt`: **camino recomendado** (más liviano) para correr la app en CPU.
+- `requirements.txt`: entorno **completo** (más pesado) usado para prototipos, notebooks y dependencias extra.
+- `requirements-gpu.txt`: extras **opcionales** para pruebas/experimentos en GPU (ver `tests/test_gpu.py`).
 
-Copyright © 2025 Andrés Mahecha
+## Qué demuestra este proyecto (Blended Pareto)
 
-Este proyecto se distribuye inicialmente bajo Copyright.
-En futuras versiones públicas pasará a un modelo de Licencia Dual (Open Source + Comercial).
+Este repo aplica un enfoque **Pareto-first**: prioriza el 20% de decisiones que produce el 80% del valor.
+
+- **Output usable** antes que features “bonitas”: exporta audio listo para probar en un motor o DAW.
+- **Producto + DSP** (“blended”): UX simple (subir → ajustar → exportar) con DSP práctico (filtros, granular, loop).
+- **Iteración rápida**: scripts y estructura para experimentar sin inflar el repo.
+
+## Output y límites (confirmado por el código)
+
+- Exporta **WAV** (PCM 24-bit) y procesa a **48 kHz** en **mono** (`src/app.py`).
+- La UI permite generar hasta **120 s** de duración objetivo para la extensión granular (`MAX_SECONDS=120`).
+- Tipos de entrada: WAV/MP3/OGG/FLAC (vía `librosa`).
+
+## Estructura del proyecto (layout real)
+
+```text
+.
+├── run.sh
+├── run_windows.bat
+├── requirements-lite.txt
+├── requirements.txt
+├── requirements-gpu.txt
+├── loop_test.py
+├── data/
+│   ├── raw/
+│   └── processed/
+├── outputs/
+├── src/
+│   ├── app.py
+│   ├── dsp.py
+│   ├── audio_processing.py
+│   ├── config.py
+│   ├── utils.py
+│   └── utils/
+│       ├── __init__.py
+│       └── audio_processing.py
+└── tests/
+    └── test_gpu.py
+```
+
+## Roadmap (Pareto-first)
+
+- Presets “1-click” (ambiente, ruido, textura mecánica) + export por lote.
+- Mejores loops (detección de cruces + métricas de clic) y preescucha A/B.
+- Pruebas rápidas con `pytest` para DSP crítico (deterministas y sin assets pesados).
+- Empaquetado simple (script/CLI) para integrar en pipelines de audio.
