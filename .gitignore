@@ -7,6 +7,11 @@ venv/
 .venv*/
 venv_heavy_backup/
 
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
 # Tooling caches / local config
 .cache/
 .streamlit/
