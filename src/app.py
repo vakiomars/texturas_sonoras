@@ -1,19 +1,24 @@
 # src/app.py
+from pathlib import Path
+
 import streamlit as st
 import numpy as np
-import librosa
 from dsp import (
     to_wav_bytes,
     process_natural_texture,
     make_seamless_loop,
 )
+from audio_processing import load_audio_uploaded, SUPPORTED_EXTENSIONS
 
 # -------- ajustes UI --------
 st.set_page_config(page_title="Texturas Sonoras — Prototipo Elegante", layout="centered")
 st.title("🎶 Generador de Texturas Sonoras (Prototipo Elegante)")
 st.caption("48 kHz / 24-bit • Granular OLA Hann • Filtros fase-cero • Reverb opcional • Limitador -1 dBTP")
 
-uploaded = st.file_uploader("🎵 Sube un archivo (WAV/MP3/OGG/FLAC)", type=["wav", "mp3", "ogg", "flac"])
+uploaded = st.file_uploader(
+    "🎵 Sube un archivo (WAV/MP3/OGG/FLAC) (en móvil también M4A/AAC/3GP)",
+    type=None,
+)
 
 # límites seguros de RAM (≈ 10 MB por minuto mono float32 @48 kHz)
 MAX_SECONDS = 120  # 2 min para MVP estable
@@ -25,8 +30,13 @@ def _mem_ok(target_s: int) -> bool:
     return est_bytes < 500 * 1024 * 1024
 
 if uploaded:
+    ext = Path(uploaded.name).suffix.lower().lstrip(".")
+    if ext not in SUPPORTED_EXTENSIONS:
+        st.error("Convierte a WAV/MP3 o exporta como WAV desde tu grabadora")
+        st.stop()
+
     # Cargar a mono 48 kHz para coherencia con motores de juego
-    y, sr = librosa.load(uploaded, sr=SR, mono=True)
+    y, sr = load_audio_uploaded(uploaded, target_sr=SR)
     st.audio(to_wav_bytes(y, sr), format="audio/wav")
     st.info(f"Origen: {len(y)/sr:.2f} s @ {sr} Hz")
 

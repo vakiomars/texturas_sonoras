@@ -53,7 +53,7 @@ Este repo aplica un enfoque **Pareto-first**: prioriza el 20% de decisiones que 
 
 - Exporta **WAV** (PCM 24-bit) y procesa a **48 kHz** en **mono** (`src/app.py`).
 - La UI permite generar hasta **120 s** de duración objetivo para la extensión granular (`MAX_SECONDS=120`).
-- Tipos de entrada: WAV/MP3/OGG/FLAC (vía `librosa`).
+- Tipos de entrada: WAV/MP3/OGG/FLAC (vía `librosa`) y M4A/AAC/3GP soportado en móvil (fallback).
 
 ## Estructura del proyecto (layout real)
 
