@@ -9,11 +9,13 @@ from dsp import (
     make_seamless_loop,
 )
 from audio_processing import load_audio_uploaded, SUPPORTED_EXTENSIONS
+from config import APP_BUILD
 
 # -------- ajustes UI --------
 st.set_page_config(page_title="Texturas Sonoras — Prototipo Elegante", layout="centered")
 st.title("🎶 Generador de Texturas Sonoras (Prototipo Elegante)")
 st.caption("48 kHz / 24-bit • Granular OLA Hann • Filtros fase-cero • Reverb opcional • Limitador -1 dBTP")
+st.caption(f"Build: {APP_BUILD}")
 
 uploaded = st.file_uploader(
     "🎵 Sube un archivo de audio (WAV/MP3/OGG/FLAC)",
