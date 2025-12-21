@@ -28,3 +28,8 @@ outputs/
 
 # Repo-local agent notes
 AGENTS.md
+# Streamlit Cloud config (track config.toml, ignore secrets)
+.streamlit/*
+!.streamlit/
+!.streamlit/config.toml
+.streamlit/secrets.toml
