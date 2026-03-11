@@ -11,11 +11,17 @@ from dsp import (
 )
 
 # -------- ajustes UI --------
-st.set_page_config(page_title="Texturas Sonoras — Prototipo Elegante", layout="centered")
-st.title("🎶 Generador de Texturas Sonoras (Prototipo Elegante)")
-st.caption("48 kHz / 24-bit • Granular OLA Hann • Filtros fase-cero • Reverb opcional • MGI activo (α + Π_C)")
+st.set_page_config(page_title="Texturas Sonoras", layout="centered")
+st.title("Texturas Sonoras")
+st.caption("Convierte un audio corto en una textura más larga, suave y lista para escuchar o descargar.")
+st.markdown(
+    "1. Sube un audio corto\n"
+    "2. Ajusta el carácter del resultado\n"
+    "3. Genera y descarga una textura más larga"
+)
 
-uploaded = st.file_uploader("🎵 Sube un archivo (WAV/MP3/OGG/FLAC)", type=["wav", "mp3", "ogg", "flac"])
+st.header("Paso 1 - Sube tu audio")
+uploaded = st.file_uploader("Sube tu audio base", type=["wav", "mp3", "ogg", "flac"])
 
 # límites seguros de RAM (≈ 10 MB por minuto mono float32 @48 kHz)
 MAX_SECONDS = 120  # 2 min para MVP estable
@@ -34,21 +40,22 @@ if uploaded:
     st.audio(to_wav_bytes(y, sr), format="audio/wav")
     st.info(f"Origen: {len(y)/sr:.2f} s @ {sr} Hz")
 
-    st.subheader("🎚 Limpieza")
-    hpf = st.slider("Corte graves (Hz)", 20, 200, 80)
-    lpf = st.slider("Corte agudos (Hz)", 2000, 20000, 15000)
+    st.header("Paso 2 - Ajusta el resultado")
+    st.subheader("Limpieza del sonido")
+    hpf = st.slider("Recorte de graves", 20, 200, 80)
+    lpf = st.slider("Recorte de agudos", 2000, 20000, 15000)
 
-    st.subheader("🌊 Extensión granular")
-    do_gran = st.checkbox("Extender con granular OLA")
+    st.subheader("Extensión")
+    do_gran = st.checkbox("Extender audio")
     if do_gran:
-        target = st.number_input("Duración objetivo (s)", min_value=10, max_value=MAX_SECONDS, value=60)
-        grain_ms = st.slider("Tamaño del grano (ms)", 50, 500, 300)
-        overlap = st.slider("Solapamiento", 0.10, 0.90, 0.75)
-        rand_pos = st.slider("Aleatoriedad de posición", 0.00, 0.30, 0.10)
-        pitch_rand = st.slider("Pitch rand (± semitonos)", 0.00, 1.00, 0.10)
+        target = st.number_input("Duración final", min_value=10, max_value=MAX_SECONDS, value=60)
+        grain_ms = st.slider("Detalle de textura", 50, 500, 300)
+        overlap = st.slider("Suavidad de unión", 0.10, 0.90, 0.75)
+        rand_pos = st.slider("Variación de fragmentos", 0.00, 0.30, 0.10)
+        pitch_rand = st.slider("Variación de tono", 0.00, 1.00, 0.10)
 
         if not _mem_ok(int(target)):
-            st.warning("⚠️ Esa duración estimada puede agotar memoria. Reduce ‘Duración objetivo’.")
+            st.warning("⚠️ Esa duración estimada puede agotar memoria. Reduce 'Duración final'.")
             target = min(int(target), 60)
     else:
         # defaults coherentes si no hay granular
@@ -58,57 +65,53 @@ if uploaded:
         rand_pos = 0.10
         pitch_rand = 0.0
 
-    st.subheader("🏞 Reverb ambiental")
-    do_rev = st.checkbox("Añadir reverb (sutil)")
+    st.subheader("Ambiente")
+    do_rev = st.checkbox("Añadir ambiente")
 
     if do_rev and not has_reverb_support():
         st.warning("Reverb no disponible: instala `pedalboard` (`pip install pedalboard`). Se procesará sin reverb.")
 
     if do_rev:
-        room = st.slider("Tamaño de sala", 0.0, 1.0, 0.25)
-        wet = st.slider("Mezcla (wet)", 0.0, 0.3, 0.07)
-        damp = st.slider("Damping", 0.0, 1.0, 0.2)
+        room = st.slider("Tamaño del espacio", 0.0, 1.0, 0.25)
+        wet = st.slider("Cantidad de ambiente", 0.0, 0.3, 0.07)
+        damp = st.slider("Suavidad del ambiente", 0.0, 1.0, 0.2)
     else:
         room = 0.25
         wet = 0.07
         damp = 0.2
 
-    st.subheader("🔁 Loop")
-    loop_option = st.checkbox("🔁 Hacer loop seamless", value=False)
-    crossfade_ms = st.slider("Duración crossfade (ms)", 50, 500, 150)
+    st.subheader("Loop")
+    loop_option = st.checkbox("Preparar loop continuo", value=False)
+    crossfade_ms = st.slider("Suavidad del loop", 50, 500, 150)
 
-    # ==============================
-    # Evolutive Controls (v2)
-    # ==============================
-    st.markdown("## Evolutive Operator Controls")
+    with st.expander("Opciones avanzadas"):
+        st.markdown("### Estabilidad y control fino")
+        iterations = st.number_input("Pasadas de evolución", min_value=1, max_value=20, value=1)
+        alpha = st.slider("Intensidad de transformación", 0.0, 1.0, 1.0, 0.05)
+        seed_mode2 = st.selectbox("Variación", ["fixed", "progressive", "random"], index=0)
+        base_seed = int(st.number_input("Semilla base", min_value=0, max_value=2_147_483_647, value=1234))
+        use_active = st.checkbox("Usar control extra para mantener un resultado más estable", value=True)
+        return_log = st.checkbox("Guardar detalle del proceso por paso (CSV)", value=True)
 
-    iterations = st.number_input("Iterations (K)", min_value=1, max_value=20, value=1)
-    alpha = st.slider("Alpha (Preservation ↔ Diffusion)", 0.0, 1.0, 1.0, 0.05)
-    seed_mode2 = st.selectbox("Seed Mode", ["fixed", "progressive", "random"], index=0)
-    base_seed = int(st.number_input("Base seed", min_value=0, max_value=2_147_483_647, value=1234))
+        if use_active:
+            peak_ceiling_dbfs = st.slider("Margen de pico (dBFS)", -12.0, -0.5, -2.0, 0.5)
+            rms_tol_db = st.slider("Tolerancia de nivel RMS frente al audio original (dB)", 0.5, 18.0, 6.0, 0.5)
+            st.caption("Usamos control de sample-peak con margen como referencia conservadora de estabilidad.")
 
-    st.markdown("### MGI (activo): restricciones + control")
-    use_active = st.checkbox("Usar MGI activo (recomendado para validación científica)", value=True)
-    return_log = st.checkbox("Guardar bitácora por iteración (CSV)", value=True)
+            st.markdown("**Tolerancias de análisis**")
+            d_mu = st.number_input("δ_mu", min_value=0.0, max_value=1.0, value=0.05, step=0.01)
+            d_var = st.number_input("δ_var", min_value=0.0, max_value=2.0, value=0.05, step=0.01)
+            d_kurt = st.number_input("δ_kurt", min_value=0.0, max_value=20.0, value=2.0, step=0.5)
+            d_H = st.number_input("δ_entropy", min_value=0.0, max_value=5.0, value=0.5, step=0.1)
+            enable_hist = st.checkbox("Ajustar distribución hacia el audio original (más lento)", value=False)
 
-    if use_active:
-        peak_ceiling_dbfs = st.slider("Headroom (sample peak ceiling, dBFS)", -12.0, -0.5, -2.0, 0.5)
-        rms_tol_db = st.slider("Tolerancia RMS vs x0 (dB)", 0.5, 18.0, 6.0, 0.5)
-        st.caption("Nota: usamos sample-peak con margen (dBFS) como proxy conservador de true-peak.")
+            st.markdown("**Ajuste de intensidad en cada intento**")
+            alpha_min = st.slider("α_min", 0.0, 0.5, 0.05, 0.01)
+            beta = st.slider("β (reducción multiplicativa)", 0.1, 0.99, 0.8, 0.01)
+            max_back = st.slider("Máximo de reajustes", 0, 20, 6, 1)
 
-        st.markdown("**Φ(x) tolerancias (momentos/entropía)**")
-        d_mu = st.number_input("δ_mu", min_value=0.0, max_value=1.0, value=0.05, step=0.01)
-        d_var = st.number_input("δ_var", min_value=0.0, max_value=2.0, value=0.05, step=0.01)
-        d_kurt = st.number_input("δ_kurt", min_value=0.0, max_value=20.0, value=2.0, step=0.5)
-        d_H = st.number_input("δ_entropy", min_value=0.0, max_value=5.0, value=0.5, step=0.1)
-        enable_hist = st.checkbox("Histogram-match hacia x0 (lento; experimental)", value=False)
-
-        st.markdown("**Control activo de α (backtracking)**")
-        alpha_min = st.slider("α_min", 0.0, 0.5, 0.05, 0.01)
-        beta = st.slider("β (reducción multiplicativa)", 0.1, 0.99, 0.8, 0.01)
-        max_back = st.slider("Máx backtracks", 0, 20, 6, 1)
-
-    if st.button("✨ Procesar"):
+    st.header("Paso 3 - Genera")
+    if st.button("Generar textura"):
         # Import local para no romper si el usuario ejecuta solo dsp.py
         from mgi import ConstraintConfig
 
@@ -165,10 +168,11 @@ if uploaded:
             if loop_option:
                 y_out = make_seamless_loop(y_out, SR, crossfade_ms=int(crossfade_ms))
 
+        st.header("Paso 4 - Escucha y descarga")
         st.audio(to_wav_bytes(y_out, SR), format="audio/wav")
 
         if logs:
-            st.markdown("### Bitácora por iteración (MGI)")
+            st.markdown("### Detalle del proceso por iteración")
             # Prefer pandas if available; otherwise fall back to pure-python CSV.
             try:
                 import pandas as pd
@@ -188,16 +192,16 @@ if uploaded:
                 csv_bytes = buf.getvalue().encode("utf-8")
 
             st.download_button(
-                "⬇️ Descargar métricas (CSV)",
+                "Descargar detalle del proceso (CSV)",
                 csv_bytes,
                 file_name="mgi_metrics.csv",
                 mime="text/csv",
             )
         st.download_button(
-            "⬇️ Descargar WAV (24-bit/48 kHz)",
+            "Descargar audio final en WAV (24-bit/48 kHz)",
             to_wav_bytes(y_out, SR),
             file_name="textura.wav",
             mime="audio/wav",
         )
 else:
-    st.info("Sube un audio para habilitar el motor.")
+    st.info("Sube un audio para comenzar.")
