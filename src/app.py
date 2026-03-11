@@ -84,7 +84,9 @@ if uploaded:
     loop_option = st.checkbox("Preparar loop continuo", value=False)
     crossfade_ms = st.slider("Suavidad del loop", 50, 500, 150)
 
-    with st.expander("Opciones avanzadas"):
+    st.caption("Si solo quieres probar la app, no necesitas tocar estas opciones.")
+    with st.expander("Opciones avanzadas (solo si quieres ajustar más)"):
+        st.caption("Estas opciones te permiten ajustar con más detalle la transformación y la estabilidad del resultado.")
         st.markdown("### Estabilidad y control fino")
         iterations = st.number_input("Pasadas de evolución", min_value=1, max_value=20, value=1)
         alpha = st.slider("Intensidad de transformación", 0.0, 1.0, 1.0, 0.05)
