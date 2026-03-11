@@ -1,13 +1,19 @@
 # Changelog
 
 ## Unreleased
-- Added: soporte de **seed** para granular (reproducibilidad)
-- Fixed: `make_seamless_loop` selecciona cero-cruces correctamente
-- Added: docs `STATE.md`, `ARCHITECTURE.md`, `WORKLOG.md`
-- Added: núcleo **MGI** (`src/mgi/`) con \(\Phi\), \(d\), \(C\), \(\Pi_C\) y operador activo (backtracking sobre \(\alpha\)).
-- Changed: `evolve_texture` usa MGI activo por defecto (puede desactivarse con `use_active=False`).
-- Changed: pipeline DSP evita normalización forzada en modo MGI (\(\Pi_C\) controla energía + headroom).
-- Added: bitácora por iteración (CSV) desde la UI.
+### Added
+- rama canónica paper-faithful definida y congelada para trabajo futuro
+- alcance de product launch week documentado
 
-## 0.1.0 (beta)
+### Changed
+- interfaz de la app reescrita para que el flujo sea más claro y orientado a producto
+- opciones avanzadas mejor explicadas en la interfaz
+- README reescrito para posicionamiento de lanzamiento
+
+### Fixed
+- loop final ahora usa scaling down-only en lugar de normalización forzada
+- reverb ya no amplifica el resultado para forzar peak
+- se eliminó el doble scaling contradictorio en la pipeline DSP
+
+## 0.1.0-beta
 - MVP Streamlit: carga audio → filtros → granular → reverb → WAV 24-bit
