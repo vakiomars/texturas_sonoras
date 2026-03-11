@@ -1,15 +1,31 @@
 # Texturas Sonoras
 
-Generador de texturas sonoras (MVP) basado en **granular synthesis (OLA Hann)** con limpieza HPF/LPF, reverb opcional y export a **WAV 24-bit / 48 kHz**.
+Genera texturas sonoras largas a partir de un audio corto.
 
-Incluye un núcleo **MGI (Motor Generativo Iterativo)**: operador iterativo con ancla \(\alpha\), restricciones \(C\), proyección \(\Pi_C\) y **control activo** (backtracking sobre \(\alpha\)) para estabilidad (headroom + energía + huella estadística).
+Texturas Sonoras te permite subir una muestra breve y obtener una versión extendida y coherente, útil para ambientación, diseño sonoro, capas musicales, prototipos de videojuegos y exploración creativa con material propio.
 
-## Qué es (en una línea)
-Subes un audio corto (p.ej. 10s) y el motor genera una textura más larga manteniendo coherencia timbral (sin clicks ni cortes perceptibles en pruebas).
+## Qué hace
 
----
+La app toma un audio corto como punto de partida y genera una textura más larga que conserva el carácter general del material original. Puedes limpiar el sonido, extenderlo, añadir ambiente, preparar un loop continuo y descargar el resultado en WAV.
 
-## Ejecutar local (Linux/Mac)
+## Casos de uso
+
+- Ambientacion
+- Ambientación
+- Sound design
+- Música
+- Prototipos para videojuegos
+- Exploración con grabaciones propias
+
+## Cómo usarlo
+
+1. Sube tu audio.
+2. Ajusta el resultado con los controles de la app.
+3. Genera y descarga el WAV final.
+
+## Ejecutar local
+
+### Linux / Mac
 
 ```bash
 python3 -m venv .venv
@@ -18,60 +34,48 @@ pip install -r requirements-lite.txt
 streamlit run src/app.py
 ```
 
-### One-liner
+Si prefieres un arranque directo:
+
 ```bash
 ./run.sh
 ```
 
-## Ejecutar local (Windows)
-1. Instala Python 3.11+
-2. Doble clic en `run_windows.bat`
-3. Abre `http://localhost:8501`
+### Windows
 
----
+1. Instala Python 3.11 o superior.
+2. Haz doble clic en `run_windows.bat`.
+3. Abre `http://localhost:8501`.
 
-## Deploy en Streamlit Cloud (recomendado)
-Para evitar builds pesados, usa `requirements-lite.txt`.
-- Opción simple: renombra `requirements-lite.txt` a `requirements.txt` para el deploy.
+## Demo / deploy
 
----
+Para desplegarlo en Streamlit Cloud, la opción recomendada es usar `requirements-lite.txt` para evitar instalaciones más pesadas. Si hace falta, puedes renombrarlo temporalmente a `requirements.txt` para el deploy.
 
-## Estructura
-```
+## Nota técnica
+
+Internamente, Texturas Sonoras combina extensión granular, limpieza de señal, ambiente opcional y un motor iterativo de control que ayuda a estabilizar el resultado final.
+
+## Estructura del proyecto
+
+```text
 texturas_sonoras/
   src/
-    app.py              # UI Streamlit
-    dsp.py              # DSP (filtros, granular, reverb, export)
-    mgi/                # núcleo MGI (Φ, d, C, Π_C, operador activo)
-      metrics.py        # Φ(x), d(x,y), RMS, peak, crest
-      constraints.py    # C, violation(), project() (Π_C)
-      operator.py       # evolve_active() (backtracking + Π_C)
+    app.py
+    dsp.py
+    mgi/
   docs/
-    STATE.md            # estado actual + tareas
-    ARCHITECTURE.md     # arquitectura actual/objetivo
-    WORKLOG.md          # bitácora mínima por sesión
-    OPERATOR.md         # definición canónica del operador MGI
+    STATE.md
+    ARCHITECTURE.md
+    WORKLOG.md
+    OPERATOR.md
   tests/
-    test_determinism.py # reproducibilidad granular
-    test_gpu_smoke.py   # smoke test CUDA
-    test_mgi.py         # tests del núcleo MGI
   scripts/
-    loop_test.py        # test manual de loop seamless
   requirements-lite.txt
   requirements.txt
   pyproject.toml
 ```
 
----
-
-## Control del proyecto (para no olvidar)
-- Lee `docs/STATE.md` (qué funciona, qué falta, qué probar)
-- Escribe 5 líneas por sesión en `docs/WORKLOG.md`
-- Registra cambios en `CHANGELOG.md`
-
----
-
 ## Licencia
+
 Copyright © 2025–2026 Andrés Mahecha.
 
-(Plan: licencia dual más adelante: open-source limitado + comercial.)
+La intención es avanzar hacia una licencia dual en el futuro: una opción open source limitada y otra comercial.
