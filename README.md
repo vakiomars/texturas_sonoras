@@ -50,6 +50,13 @@ Si prefieres un arranque directo:
 
 Para desplegarlo en Streamlit Cloud, la opción recomendada es usar `requirements-lite.txt` para evitar instalaciones más pesadas. Si hace falta, puedes renombrarlo temporalmente a `requirements.txt` para el deploy.
 
+## Deploy en Streamlit Community Cloud
+
+- Usar la branch `feat/free-demo-release`.
+- Usar como entrypoint `src/app.py`.
+- Fijar Python 3.12 en Advanced settings.
+- La demo usa `requirements.txt` reducido para cloud.
+
 ## Nota técnica
 
 Internamente, Texturas Sonoras combina extensión granular, limpieza de señal, ambiente opcional y un motor iterativo de control que ayuda a estabilizar el resultado final.

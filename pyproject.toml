@@ -2,7 +2,7 @@
 name = "texturas-sonoras"
 version = "0.2.0"
 description = "Motor generativo de texturas sonoras (granular synthesis + MGI)"
-requires-python = ">=3.11"
+requires-python = ">=3.12,<3.13"
 license = "Proprietary"
 authors = [
     { name = "Andres Mahecha" },
