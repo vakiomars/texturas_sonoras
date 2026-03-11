@@ -155,7 +155,7 @@ def reverb_ambient(y: np.ndarray, sr: int, room: float = 0.25, wet: float = 0.07
         return y
     board = Pedalboard([Reverb(room_size=float(room), wet_level=float(wet), damping=float(damping))])
     y2 = board(y.astype(np.float32), sr)
-    return normalize_peak(y2, 0.95)
+    return scale_down_to_peak(y2, 0.95)
 
 
 def limiter_true_peak(y: np.ndarray, ceiling_db: float = -1.0) -> np.ndarray:
@@ -225,12 +225,10 @@ def process_natural_texture(
     if do_reverb:
         y2 = reverb_ambient(y2, sr, room=room, wet=wet, damping=damping)
 
-    # 4) limitador + normalización
+    # 4) limitador o escalado final
     if do_limiter:
-        # Sample-peak limiting only (legacy). Avoid forcing a higher peak afterwards.
-        y2 = limiter_sample_peak(y2, ceiling_db=-1.0)
+        return limiter_sample_peak(y2, ceiling_db=-1.0)
 
-    # Optional post scaling.
     if post_peak is None:
         return y2.astype(np.float32)
     if post_peak_mode == "down_only":
@@ -274,9 +272,7 @@ def make_seamless_loop(y, sr, crossfade_ms=100):
     y[:crossfade] += y[-crossfade:]
     y = y[:-crossfade]
 
-    # Normalizar
-    y = y / (np.max(np.abs(y)) + 1e-9)
-    return y.astype(np.float32)
+    return scale_down_to_peak(y, 0.95)
 
 
 # ==============================
