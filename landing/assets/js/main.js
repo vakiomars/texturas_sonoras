@@ -20,9 +20,12 @@
     // show or hide the back-top-top button
     const backToTop = document.querySelector(".back-to-top");
     if (backToTop) {
+      const isMobile = window.matchMedia("(max-width: 767px)").matches;
+      const scrollThreshold = isMobile ? 520 : 50;
+
       if (
-        document.body.scrollTop > 50 ||
-        document.documentElement.scrollTop > 50
+        document.body.scrollTop > scrollThreshold ||
+        document.documentElement.scrollTop > scrollThreshold
       ) {
         backToTop.style.display = "flex";
       } else {
