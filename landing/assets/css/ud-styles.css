@@ -2944,4 +2944,248 @@ p {
     padding: 10px 20px;
   }
 }
+
+/* ===== Legal Page CSS ===== */
+.ts-legal-page {
+  background:
+    radial-gradient(circle at top right, rgba(34, 211, 238, 0.08), transparent 26%),
+    linear-gradient(180deg, #0B1020 0%, #101728 100%);
+  color: var(--bp-text);
+}
+
+.ts-legal-page .container {
+  position: relative;
+  z-index: 1;
+}
+
+.ts-legal-header {
+  padding: 24px 0 0;
+}
+
+.ts-legal-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 72px;
+}
+
+.ts-legal-brand {
+  display: inline-flex;
+  align-items: center;
+}
+
+.ts-legal-brand img {
+  display: block;
+  width: 100%;
+  max-width: 228px;
+  height: auto;
+}
+
+.ts-legal-main {
+  padding: 24px 0 88px;
+}
+
+.ts-legal-hero {
+  padding: 24px 0 32px;
+}
+
+.ts-legal-hero-card {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 42px 44px;
+  border-radius: 28px;
+  border: 1px solid rgba(248, 250, 252, 0.12);
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.88) 0%, rgba(11, 16, 32, 0.92) 100%);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.24);
+}
+
+.ts-legal-kicker {
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(34, 211, 238, 0.9);
+  margin-bottom: 18px;
+}
+
+.ts-legal-hero-card h1 {
+  color: var(--white);
+  font-size: 48px;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+
+.ts-legal-hero-card p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(248, 250, 252, 0.76);
+}
+
+.ts-legal-content {
+  padding: 0 0 12px;
+}
+
+.ts-legal-article {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 44px 44px 48px;
+  border-radius: 28px;
+  border: 1px solid rgba(248, 250, 252, 0.1);
+  background: rgba(30, 41, 59, 0.78);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.18);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+}
+
+.ts-legal-section + .ts-legal-section {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(248, 250, 252, 0.08);
+}
+
+.ts-legal-section h2 {
+  color: var(--white);
+  font-size: 24px;
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+.ts-legal-section p,
+.ts-legal-section li {
+  color: rgba(248, 250, 252, 0.84);
+  font-size: 17px;
+  line-height: 1.82;
+}
+
+.ts-legal-section p + p {
+  margin-top: 14px;
+}
+
+.ts-legal-section ul {
+  margin: 14px 0 0;
+  padding-left: 0;
+}
+
+.ts-legal-section li {
+  position: relative;
+  list-style: none;
+  padding-left: 24px;
+}
+
+.ts-legal-section li + li {
+  margin-top: 10px;
+}
+
+.ts-legal-section li::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--bp-cyan);
+  opacity: 0.9;
+}
+
+.ts-legal-section a {
+  color: var(--bp-cyan);
+  font-weight: 600;
+}
+
+.ts-legal-section a:hover {
+  color: var(--cta-color);
+}
+
+.ts-legal-page .ud-footer {
+  margin-top: 0;
+}
+
+@media (max-width: 991px) {
+  .ts-legal-hero-card,
+  .ts-legal-article {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .ts-legal-hero-card h1 {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .ts-legal-header {
+    padding-top: 16px;
+  }
+
+  .ts-legal-header-bar {
+    min-height: 60px;
+  }
+
+  .ts-legal-brand img {
+    max-width: 208px;
+  }
+
+  .ts-legal-main {
+    padding: 12px 0 48px;
+  }
+
+  .ts-legal-hero {
+    padding: 18px 0 20px;
+  }
+
+  .ts-legal-hero-card {
+    padding: 28px 22px;
+    border-radius: 22px;
+  }
+
+  .ts-legal-kicker {
+    font-size: 12px;
+    margin-bottom: 14px;
+  }
+
+  .ts-legal-hero-card h1 {
+    font-size: 32px;
+    line-height: 1.08;
+    margin-bottom: 12px;
+  }
+
+  .ts-legal-hero-card p {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .ts-legal-article {
+    padding: 28px 22px 32px;
+    border-radius: 22px;
+  }
+
+  .ts-legal-section + .ts-legal-section {
+    margin-top: 24px;
+    padding-top: 24px;
+  }
+
+  .ts-legal-section h2 {
+    font-size: 21px;
+    margin-bottom: 14px;
+  }
+
+  .ts-legal-section p,
+  .ts-legal-section li {
+    font-size: 15px;
+    line-height: 1.74;
+  }
+
+  .ts-legal-section li {
+    padding-left: 20px;
+  }
+
+  .ts-legal-section li::before {
+    top: 11px;
+    width: 7px;
+    height: 7px;
+  }
+}
 /*# sourceMappingURL=ud-styles.css.map */
