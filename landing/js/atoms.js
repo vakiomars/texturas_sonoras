@@ -24,7 +24,7 @@
   for (var i = 0; i < N; i++) {
     particles.push({
       x: Math.random() * 800,
-      y: Math.random() * 800,
+      y: Math.random() * 1200,
       vx: (Math.random()-0.5)*2,
       vy: (Math.random()-0.5)*2,
       size: 2 + Math.random()*3,
@@ -56,7 +56,7 @@
     var cx=W()*0.5, cy=H()*0.5;
     var angle=Math.atan2(py-cy,px-cx);
     var dist=Math.sqrt((px-cx)*(px-cx)+(py-cy)*(py-cy));
-    var maxR=Math.min(W(),H())*0.38;
+    var maxR=Math.min(W(),H())*0.42;
     var spiral=angle+0.04+Math.sin(t*0.005+dist*0.002)*0.4;
     var r=Math.min(dist,maxR)*0.97;
     return {x:cx+Math.cos(spiral)*r, y:cy+Math.sin(spiral)*r};
@@ -70,16 +70,16 @@
 
     for(var i=0;i<N;i++){
       var p=particles[i];
+      if(p.x<-20||p.x>W()+20) p.x=Math.random()*W();
+      if(p.y<-20||p.y>H()+20) p.y=Math.random()*H();
       var flow=flowTarget(p.x,p.y,time);
-      var chaosVx=Math.sin(time*0.012+i*0.7)*1.8+(Math.random()-0.5)*0.6;
-      var chaosVy=Math.cos(time*0.01+i*0.9)*1.8+(Math.random()-0.5)*0.6;
-      var orderVx=(flow.x-p.x)*0.018;
-      var orderVy=(flow.y-p.y)*0.018;
+      var chaosVx=Math.sin(time*0.012+i*0.7)*1.5+(Math.random()-0.5)*0.5;
+      var chaosVy=Math.cos(time*0.01+i*0.9)*1.5+(Math.random()-0.5)*0.5;
+      var orderVx=(flow.x-p.x)*0.015;
+      var orderVy=(flow.y-p.y)*0.015;
       p.vx=chaosVx*(1-blend)+orderVx*blend;
       p.vy=chaosVy*(1-blend)+orderVy*blend;
       p.x+=p.vx; p.y+=p.vy;
-      if(p.x<-20)p.x=W()+20; if(p.x>W()+20)p.x=-20;
-      if(p.y<-20)p.y=H()+20; if(p.y>H()+20)p.y=-20;
     }
 
     for(var i=0;i<N;i++){
@@ -142,5 +142,5 @@
   }
 
   draw();
-  window.addEventListener('resize',resize);
+  window.addEventListener('resize',function(){ resize(); for(var i=0;i<N;i++){ particles[i].x=Math.random()*W(); particles[i].y=Math.random()*H(); }});
 })();
