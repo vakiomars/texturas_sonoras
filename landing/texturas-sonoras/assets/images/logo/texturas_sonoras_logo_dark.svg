@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="662" height="445" viewBox="0 0 662 445" fill="none">
+    
+        <defs>
+          <radialGradient id="bg" cx="50%" cy="38%" r="75%">
+            <stop offset="0%" stop-color="#1E293B" stop-opacity="0.26"/>
+            <stop offset="55%" stop-color="#0B1020" stop-opacity="1"/>
+            <stop offset="100%" stop-color="#070B16" stop-opacity="1"/>
+          </radialGradient>
+          <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="7" result="blur"/>
+            <feColorMatrix in="blur" type="matrix"
+              values="0 0 0 0 0.133
+                      0 0 0 0 0.827
+                      0 0 0 0 0.933
+                      0 0 0 0.18 0" />
+          </filter>
+        </defs>
+        
+    <rect width="662" height="445" rx="8" fill="url(#bg)"/>
+    <g>
+      <path d="M 331 121
+C 347 121, 359 137, 372 151
+C 382 162, 392 166, 392 181
+C 392 196, 381 202, 371 213
+C 357 228, 347 240, 331 240
+C 315 240, 305 228, 291 213
+C 281 202, 270 196, 270 181
+C 270 166, 280 161, 291 151
+C 304 138, 315 121, 331 121
+Z" fill="none" stroke="#22D3EE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#softGlow)" opacity="0.22"/>
+      <path d="M 331 121
+C 347 121, 359 137, 372 151
+C 382 162, 392 166, 392 181
+C 392 196, 381 202, 371 213
+C 357 228, 347 240, 331 240
+C 315 240, 305 228, 291 213
+C 281 202, 270 196, 270 181
+C 270 166, 280 161, 291 151
+C 304 138, 315 121, 331 121
+Z" fill="none" stroke="#22D3EE" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="331.0" y="294" text-anchor="middle"
+            font-family="Montserrat, Poppins, Arial, sans-serif"
+            font-size="36" font-weight="700" letter-spacing="0.5"
+            fill="#F8FAFC">TEXTURAS SONORAS</text>
+      <text x="331.0" y="321" text-anchor="middle"
+            font-family="Montserrat, Poppins, Arial, sans-serif"
+            font-size="14" font-weight="500" letter-spacing="5.2"
+            fill="#22D3EE">SAMPLE TO TEXTURE</text>
+      <rect x="248" y="334" width="166" height="3" rx="1.5" fill="#F59E0B" opacity="0.95"/>
+    </g>
+    </svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420" fill="none">
+  <g>
+    <path d="M 331 121
+C 347 121, 359 137, 372 151
+C 382 162, 392 166, 392 181
+C 392 196, 381 202, 371 213
+C 357 228, 347 240, 331 240
+C 315 240, 305 228, 291 213
+C 281 202, 270 196, 270 181
+C 270 166, 280 161, 291 151
+C 304 138, 315 121, 331 121
+Z" transform="translate(119,-12)" fill="none" stroke="#22D3EE" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="450" y="300" text-anchor="middle"
+          font-family="Montserrat, Poppins, Arial, sans-serif"
+          font-size="48" font-weight="700" letter-spacing="0.5"
+          fill="#F8FAFC">TEXTURAS SONORAS</text>
+    <text x="450" y="338" text-anchor="middle"
+          font-family="Montserrat, Poppins, Arial, sans-serif"
+          font-size="18" font-weight="500" letter-spacing="6"
+          fill="#F8FAFC" opacity="0.82">SAMPLE TO TEXTURE</text>
+    <rect x="342" y="356" width="216" height="4" rx="2" fill="#F59E0B" opacity="0.98"/>
+  </g>
+</svg>
