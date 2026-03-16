@@ -31,7 +31,11 @@ st.header("Paso 1 - Sube tu audio")
 uploaded = st.file_uploader("Sube tu audio base", type=["wav", "mp3", "ogg", "flac", "m4a", "aac", "mp4", "3gp", "wma", "webm"])
 st.markdown("---")
 st.caption("📱 ¿Estás en el teléfono? Graba directamente:")
-audio_recording = st.audio_input("Grabar audio")
+try:
+    audio_recording = st.audio_input("Grabar audio")
+except AttributeError:
+    audio_recording = None
+    st.info("Actualiza tu navegador o usa un ordenador para grabar audio directamente.")
 audio_source = uploaded or audio_recording
 
 MAX_INPUT_SECONDS = 45
