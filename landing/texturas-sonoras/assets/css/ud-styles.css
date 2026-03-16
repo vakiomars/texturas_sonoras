@@ -219,20 +219,6 @@ p {
   background: var(--primary-color);
 }
 
-@media (max-width: 767px) {
-  .back-to-top {
-    width: 34px;
-    height: 34px;
-    line-height: 34px;
-    right: 14px;
-    bottom: 14px;
-    border-radius: 8px;
-    opacity: 0.82;
-    -webkit-box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
-  }
-}
-
 /* ===== Header CSS ===== */
 .ud-header {
   position: absolute;
@@ -625,8 +611,8 @@ p {
 
 @media (max-width: 767px) {
   .ud-hero {
-    padding-top: 46px;
-    padding-bottom: 42px;
+    padding-top: 52px;
+    padding-bottom: 52px;
     min-height: auto;
   }
 }
@@ -658,19 +644,11 @@ p {
 }
 
 @media (max-width: 767px) {
-  .ud-hero-row {
-    row-gap: 26px;
-  }
-
-  .ud-hero-content {
-    max-width: 100%;
-  }
-
   .ud-hero-content .ud-hero-title {
     font-size: 34px;
     line-height: 1.12;
     text-align: center;
-    margin-bottom: 14px;
+    margin-bottom: 18px;
   }
 }
 
@@ -688,9 +666,9 @@ p {
 @media (max-width: 767px) {
   .ud-hero-content .ud-hero-desc {
     font-size: 16px;
-    line-height: 1.62;
+    line-height: 1.7;
     text-align: center;
-    margin: 0 auto 18px;
+    margin: 0 auto 24px;
   }
 }
 
@@ -713,14 +691,14 @@ p {
 @media (max-width: 767px) {
   .ud-hero-buttons {
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
   }
 
   .ud-hero-buttons .ud-main-btn {
     width: 100%;
     max-width: 320px;
     min-width: 0;
-    padding: 13px 18px;
+    padding: 14px 18px;
   }
 }
 
@@ -781,17 +759,6 @@ p {
   }
 }
 
-@media (max-width: 767px) {
-  .ud-hero-image {
-    max-width: 100%;
-  }
-
-  .ud-hero-image-shell {
-    padding: 14px;
-    border-radius: 20px;
-  }
-}
-
 /* ===== Features CSS ===== */
 .ud-features {
   padding-top: 120px;
@@ -832,21 +799,6 @@ p {
 }
 
 @media (max-width: 767px) {
-  .ud-section-title {
-    margin-bottom: 42px;
-  }
-
-  .ud-section-title span {
-    font-size: 16px;
-    margin-bottom: 8px;
-  }
-
-  .ud-section-title h2 {
-    font-size: 34px;
-    line-height: 1.15;
-    margin-bottom: 14px;
-  }
-
   .ud-section-title p {
     font-size: 16px;
     line-height: 26px;
@@ -932,32 +884,25 @@ p {
 
 /* ===== About CSS ===== */
 .ud-about {
-  background: linear-gradient(180deg, rgba(232, 238, 246, 0.9) 0%, rgba(223, 231, 241, 0.72) 100%);
-  padding: 96px 0 88px;
+  background: #E9EEF6;
+  padding: 120px 0;
 }
 
 @media (max-width: 767px) {
   .ud-about {
-    padding: 48px 0 40px;
+    padding: 80px 0;
   }
 }
 
 .ud-about-wrapper {
-  background: linear-gradient(135deg, rgba(248, 250, 252, 0.96) 0%, rgba(239, 244, 249, 0.96) 100%);
+  background: var(--white);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 28px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  overflow: hidden;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-  -webkit-box-shadow: 0 22px 48px rgba(11, 16, 32, 0.12);
-          box-shadow: 0 22px 48px rgba(11, 16, 32, 0.12);
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
@@ -967,20 +912,18 @@ p {
 }
 
 .ud-about-content-wrapper {
-  width: 56%;
-  padding: 56px 52px;
+  padding: 70px;
 }
 
 @media (max-width: 767px) {
   .ud-about-content-wrapper {
-    width: 100%;
-    padding: 30px 24px 14px;
+    padding: 50px 30px;
   }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   .ud-about-content-wrapper {
-    padding: 38px 36px 20px;
+    padding: 50px;
   }
 }
 
@@ -991,42 +934,31 @@ p {
 .ud-about-content .tag {
   font-weight: 500;
   font-size: 14px;
-  letter-spacing: 0.08em;
-  color: #0B1020;
-  background: rgba(34, 211, 238, 0.18);
-  border: 1px solid rgba(34, 211, 238, 0.28);
-  padding: 7px 16px;
+  color: var(--white);
+  background: var(--primary-color);
+  padding: 5px 20px;
   display: inline-block;
-  border-radius: 999px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .ud-about-content h2 {
   font-weight: bold;
   font-size: 36px;
-  line-height: 1.2;
-  margin-bottom: 22px;
-  max-width: 10ch;
+  line-height: 45px;
+  margin-bottom: 30px;
 }
 
 @media (max-width: 767px) {
   .ud-about-content h2 {
-    font-size: 28px;
-    line-height: 1.2;
-    margin-bottom: 16px;
+    font-size: 26px;
+    line-height: 38px;
   }
 }
 
 .ud-about-content p {
   font-size: 16px;
   line-height: 28px;
-  color: rgba(11, 16, 32, 0.8);
-  margin-bottom: 18px;
-  max-width: 44ch;
-}
-
-.ud-about-content p:last-of-type {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .ud-about-content .ud-main-btn:hover {
@@ -1035,53 +967,16 @@ p {
           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
-.ud-about-image {
-  width: 44%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding: 40px 34px;
-  background: radial-gradient(circle at top left, rgba(34, 211, 238, 0.2) 0%, rgba(34, 211, 238, 0) 44%), linear-gradient(180deg, rgba(207, 217, 229, 0.52) 0%, rgba(226, 233, 242, 0.24) 100%);
-  border-left: 1px solid rgba(11, 16, 32, 0.08);
-}
-
-.ud-about-image img {
-  width: 100%;
-  max-width: 420px;
-  -webkit-filter: drop-shadow(0 20px 36px rgba(11, 16, 32, 0.18));
-          filter: drop-shadow(0 20px 36px rgba(11, 16, 32, 0.18));
-}
-
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
   .ud-about-image {
-    width: 100%;
     text-align: center;
-    padding: 12px 28px 28px;
-    border-left: 0;
-    border-top: 1px solid rgba(11, 16, 32, 0.08);
-  }
-}
-
-@media (max-width: 767px) {
-  .ud-about-image {
-    padding: 6px 20px 18px;
-  }
-
-  .ud-about-image img {
-    max-width: 300px;
   }
 }
 
 /* ===== Pricing CSS ===== */
 .ud-pricing {
-  padding-top: 112px;
-  padding-bottom: 72px;
+  padding-top: 120px;
+  padding-bottom: 90px;
 }
 
 .ud-pricing .ud-section-title h2 {
@@ -1090,40 +985,29 @@ p {
 
 .ud-pricing .ud-section-title p {
   color: rgba(248, 250, 252, 0.78);
-  max-width: 46ch;
 }
 
 @media (max-width: 767px) {
   .ud-pricing {
-    padding-top: 56px;
-    padding-bottom: 20px;
+    padding-top: 80px;
+    padding-bottom: 40px;
   }
 }
 
 .ud-single-pricing {
-  margin-bottom: 28px;
+  margin-bottom: 40px;
   background: #1E293B;
   border: 2px solid #22D3EE;
-  border-radius: 10px;
+  border-radius: 8px;
   text-align: center;
-  padding: 36px 28px 32px;
+  padding: 45px 30px;
   position: relative;
-  min-height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
 }
 
 .ud-single-pricing.active {
-  background: linear-gradient(180deg, rgba(30, 41, 59, 0.98) 0%, rgba(11, 16, 32, 1) 100%);
+  background: linear-gradient(180deg, #1E293B 0%, #0B1020 100%);
   border: 1px solid rgba(34, 211, 238, 0.22);
-  padding: 40px 30px 34px;
-  -webkit-box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
-          box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
+  padding: 55px 30px;
 }
 
 .ud-single-pricing.active .ud-pricing-header h3,
@@ -1168,51 +1052,31 @@ p {
 }
 
 .ud-single-pricing .ud-pricing-header h3 {
-  font-weight: 700;
-  font-size: 26px;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  margin-bottom: 12px;
-  color: #F8FAFC;
+  font-weight: 500;
+  font-size: 15px;
+  margin-bottom: 8px;
 }
 
 .ud-single-pricing .ud-pricing-header h4 {
   font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: rgba(34, 211, 238, 0.88);
-  margin-bottom: 22px;
+  font-size: 26px;
+  color: var(--primary-color);
+  margin-bottom: 40px;
 }
 
 .ud-single-pricing .ud-pricing-body {
-  margin-bottom: 24px;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+  margin-bottom: 40px;
 }
 
 .ud-single-pricing .ud-pricing-body li {
-  font-weight: 550;
+  font-weight: 500;
   font-size: 15px;
-  line-height: 1.58;
-  margin-bottom: 12px;
-  color: rgba(248, 250, 252, 0.9);
-}
-
-.ud-single-pricing .ud-pricing-body li:last-child {
-  margin-bottom: 0;
-}
-
-.ud-single-pricing .ud-pricing-footer {
-  margin-top: auto;
+  margin-bottom: 18px;
 }
 
 .ud-single-pricing .ud-main-btn {
   border-radius: 30px;
-  padding: 13px 32px;
-  font-weight: 700;
-  letter-spacing: 0.01em;
+  padding: 15px 40px;
 }
 
 .ud-single-pricing .ud-border-btn {
@@ -1235,56 +1099,6 @@ p {
 .ud-single-pricing .ud-white-btn:hover {
   color: var(--white);
   background: var(--heading-color);
-}
-
-@media only screen and (min-width: 992px) {
-  .ud-single-pricing.active {
-    -webkit-transform: translateY(-8px);
-            transform: translateY(-8px);
-  }
-}
-
-@media (max-width: 767px) {
-  .ud-pricing .row.g-0.align-items-center.justify-content-center > div:last-child .ud-single-pricing {
-    margin-bottom: 14px;
-  }
-
-  .ud-pricing .row.g-0.align-items-center.justify-content-center > div {
-    margin-bottom: 10px;
-  }
-
-  .ud-single-pricing,
-  .ud-single-pricing.active {
-    padding: 28px 22px 24px;
-  }
-
-  .ud-single-pricing .ud-pricing-header h3 {
-    font-size: 23px;
-    line-height: 1.16;
-    margin-bottom: 9px;
-  }
-
-  .ud-single-pricing .ud-pricing-header h4 {
-    font-size: 13px;
-    line-height: 1.35;
-    margin-bottom: 16px;
-  }
-
-  .ud-single-pricing .ud-pricing-body {
-    margin-bottom: 20px;
-  }
-
-  .ud-single-pricing .ud-pricing-body li {
-    font-size: 14.5px;
-    line-height: 1.6;
-    margin-bottom: 10px;
-  }
-
-  .ud-single-pricing .ud-main-btn {
-    width: 100%;
-    padding: 12px 20px;
-    font-size: 15px;
-  }
 }
 
 /* ===== FAQ CSS ===== */
@@ -1762,8 +1576,6 @@ p {
   z-index: 1;
   overflow: hidden;
   border-top: 1px solid rgba(248, 250, 252, 0.08);
-  -webkit-box-shadow: inset 0 1px 0 rgba(248, 250, 252, 0.04);
-          box-shadow: inset 0 1px 0 rgba(248, 250, 252, 0.04);
 }
 
 .ud-footer .shape {
@@ -1803,7 +1615,7 @@ p {
 .ud-widget .ud-widget-desc {
   font-size: 15px;
   line-height: 25px;
-  color: rgba(248, 250, 252, 0.84);
+  color: var(--bp-text-soft);
   margin-bottom: 0;
   max-width: 320px;
 }
@@ -1895,33 +1707,6 @@ p {
 }
 
 @media (max-width: 767px) {
-  .ud-footer {
-    padding-top: 24px;
-  }
-
-  .ud-widget {
-    margin-bottom: 12px;
-  }
-
-  .ud-widget .ud-footer-logo {
-    max-width: 280px;
-    margin-bottom: 14px;
-  }
-
-  .ud-widget .ud-widget-desc {
-    font-size: 15px;
-    line-height: 24px;
-    max-width: 280px;
-  }
-
-  .ud-footer-meta {
-    min-height: 0;
-  }
-
-  .ud-footer-bottom {
-    padding: 18px 0 22px;
-  }
-
   .ud-footer-bottom .ud-footer-bottom-left {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
@@ -1931,7 +1716,7 @@ p {
 
 .ud-footer-bottom .ud-footer-bottom-left a,
 .ud-footer-bottom .ud-footer-bottom-left span {
-  font-weight: 500;
+  font-weight: normal;
   font-size: 15px;
   color: var(--bp-text-faint);
   margin-right: 30px;
@@ -1941,7 +1726,7 @@ p {
 @media (max-width: 767px) {
   .ud-footer-bottom .ud-footer-bottom-left a,
   .ud-footer-bottom .ud-footer-bottom-left span {
-    margin: 0px 8px 6px;
+    margin: 0px 8px 8px;
   }
 }
 
@@ -1951,7 +1736,7 @@ p {
 
 .ud-footer-bottom .ud-footer-bottom-right {
   text-align: right;
-  font-weight: 500;
+  font-weight: normal;
   font-size: 15px;
   color: var(--bp-text-faint);
 }
@@ -1967,7 +1752,7 @@ p {
 @media (max-width: 767px) {
   .ud-footer-bottom .ud-footer-bottom-right {
     text-align: center;
-    margin-top: 6px;
+    margin-top: 10px;
   }
 }
 
@@ -2942,250 +2727,6 @@ p {
     margin: 5px 10px;
     font-size: 14px;
     padding: 10px 20px;
-  }
-}
-
-/* ===== Legal Page CSS ===== */
-.ts-legal-page {
-  background:
-    radial-gradient(circle at top right, rgba(34, 211, 238, 0.08), transparent 26%),
-    linear-gradient(180deg, #0B1020 0%, #101728 100%);
-  color: var(--bp-text);
-}
-
-.ts-legal-page .container {
-  position: relative;
-  z-index: 1;
-}
-
-.ts-legal-header {
-  padding: 24px 0 0;
-}
-
-.ts-legal-header-bar {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  min-height: 72px;
-}
-
-.ts-legal-brand {
-  display: inline-flex;
-  align-items: center;
-}
-
-.ts-legal-brand img {
-  display: block;
-  width: 100%;
-  max-width: 228px;
-  height: auto;
-}
-
-.ts-legal-main {
-  padding: 24px 0 88px;
-}
-
-.ts-legal-hero {
-  padding: 24px 0 32px;
-}
-
-.ts-legal-hero-card {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 42px 44px;
-  border-radius: 28px;
-  border: 1px solid rgba(248, 250, 252, 0.12);
-  background: linear-gradient(180deg, rgba(30, 41, 59, 0.88) 0%, rgba(11, 16, 32, 0.92) 100%);
-  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.24);
-}
-
-.ts-legal-kicker {
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(34, 211, 238, 0.9);
-  margin-bottom: 18px;
-}
-
-.ts-legal-hero-card h1 {
-  color: var(--white);
-  font-size: 48px;
-  line-height: 1.04;
-  letter-spacing: -0.03em;
-  margin-bottom: 16px;
-}
-
-.ts-legal-hero-card p {
-  margin: 0;
-  font-size: 17px;
-  line-height: 1.7;
-  color: rgba(248, 250, 252, 0.76);
-}
-
-.ts-legal-content {
-  padding: 0 0 12px;
-}
-
-.ts-legal-article {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 44px 44px 48px;
-  border-radius: 28px;
-  border: 1px solid rgba(248, 250, 252, 0.1);
-  background: rgba(30, 41, 59, 0.78);
-  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.18);
-  -webkit-backdrop-filter: blur(8px);
-          backdrop-filter: blur(8px);
-}
-
-.ts-legal-section + .ts-legal-section {
-  margin-top: 32px;
-  padding-top: 32px;
-  border-top: 1px solid rgba(248, 250, 252, 0.08);
-}
-
-.ts-legal-section h2 {
-  color: var(--white);
-  font-size: 24px;
-  line-height: 1.25;
-  margin-bottom: 16px;
-}
-
-.ts-legal-section p,
-.ts-legal-section li {
-  color: rgba(248, 250, 252, 0.84);
-  font-size: 17px;
-  line-height: 1.82;
-}
-
-.ts-legal-section p + p {
-  margin-top: 14px;
-}
-
-.ts-legal-section ul {
-  margin: 14px 0 0;
-  padding-left: 0;
-}
-
-.ts-legal-section li {
-  position: relative;
-  list-style: none;
-  padding-left: 24px;
-}
-
-.ts-legal-section li + li {
-  margin-top: 10px;
-}
-
-.ts-legal-section li::before {
-  content: "";
-  position: absolute;
-  top: 12px;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: var(--bp-cyan);
-  opacity: 0.9;
-}
-
-.ts-legal-section a {
-  color: var(--bp-cyan);
-  font-weight: 600;
-}
-
-.ts-legal-section a:hover {
-  color: var(--cta-color);
-}
-
-.ts-legal-page .ud-footer {
-  margin-top: 0;
-}
-
-@media (max-width: 991px) {
-  .ts-legal-hero-card,
-  .ts-legal-article {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-
-  .ts-legal-hero-card h1 {
-    font-size: 40px;
-  }
-}
-
-@media (max-width: 767px) {
-  .ts-legal-header {
-    padding-top: 16px;
-  }
-
-  .ts-legal-header-bar {
-    min-height: 60px;
-  }
-
-  .ts-legal-brand img {
-    max-width: 208px;
-  }
-
-  .ts-legal-main {
-    padding: 12px 0 48px;
-  }
-
-  .ts-legal-hero {
-    padding: 18px 0 20px;
-  }
-
-  .ts-legal-hero-card {
-    padding: 28px 22px;
-    border-radius: 22px;
-  }
-
-  .ts-legal-kicker {
-    font-size: 12px;
-    margin-bottom: 14px;
-  }
-
-  .ts-legal-hero-card h1 {
-    font-size: 32px;
-    line-height: 1.08;
-    margin-bottom: 12px;
-  }
-
-  .ts-legal-hero-card p {
-    font-size: 15px;
-    line-height: 1.65;
-  }
-
-  .ts-legal-article {
-    padding: 28px 22px 32px;
-    border-radius: 22px;
-  }
-
-  .ts-legal-section + .ts-legal-section {
-    margin-top: 24px;
-    padding-top: 24px;
-  }
-
-  .ts-legal-section h2 {
-    font-size: 21px;
-    margin-bottom: 14px;
-  }
-
-  .ts-legal-section p,
-  .ts-legal-section li {
-    font-size: 15px;
-    line-height: 1.74;
-  }
-
-  .ts-legal-section li {
-    padding-left: 20px;
-  }
-
-  .ts-legal-section li::before {
-    top: 11px;
-    width: 7px;
-    height: 7px;
   }
 }
 /*# sourceMappingURL=ud-styles.css.map */
