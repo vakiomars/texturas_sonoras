@@ -210,4 +210,4 @@ if audio_source:
         finally:
             st.session_state.busy = False
 else:
-    st.info("Sube un audio o graba desde el micrófono para comenzar.")
+    st.info("Sube un archivo de audio de máximo 45 segundos para comenzar")
