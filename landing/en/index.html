@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Blended Pareto — Sistemas que convierten señales complejas en criterio accionable." />
+    <meta name="description" content="Blended Pareto — Systems that turn complex signals into actionable judgment." />
     <meta name="author" content="Blended Pareto" />
-    <title>Blended Pareto — Menos ruido. Mejor decisión.</title>
-    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+    <title>Blended Pareto — Less noise. Better decisions.</title>
 
-    <meta property="og:title" content="Blended Pareto — Menos ruido. Mejor decisión." />
-    <meta property="og:description" content="Construimos sistemas que convierten señales complejas en criterio accionable." />
+    <meta property="og:title" content="Blended Pareto — Less noise. Better decisions." />
+    <meta property="og:description" content="We build systems that turn complex signals into actionable judgment." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://blendedpareto.com" />
+    <meta property="og:url" content="https://blendedpareto.com/en/" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg" />
+    <link href="../css/styles.css" rel="stylesheet" />
   </head>
   <body>
     <div class="bg-grid"></div>
@@ -26,32 +26,32 @@
       <div class="masthead-inner">
         <div class="masthead-content">
           <div class="logo-wrap">
-            <img src="assets/img/logo.svg" alt="Blended Pareto" class="logo" />
+            <img src="../assets/img/logo.svg" alt="Blended Pareto" class="logo" />
           </div>
-          <span class="coming-soon-badge">Próximamente</span>
-          <p class="tagline">Menos ruido. Mejor decisión.</p>
+          <span class="coming-soon-badge">Coming Soon</span>
+          <p class="tagline">Less noise. Better decisions.</p>
           <div class="divider"></div>
           <p class="desc">
-            Construimos sistemas que convierten señales complejas
-            en criterio accionable.
+            We build systems that turn complex signals
+            into actionable judgment.
           </p>
           <div class="product-callout">
             <span class="product-dot"></span>
-            <span class="product-text">Primer producto disponible —</span>
-            <a href="/texturas-sonoras" class="product-link">Texturas Sonoras →</a>
+            <span class="product-text">First product available —</span>
+            <a href="/texturas-sonoras/en/" class="product-link">Texturas Sonoras →</a>
           </div>
           <div class="cta-group">
-            <a href="/texturas-sonoras" class="btn-primary-bp">
-              Conocer Texturas Sonoras
+            <a href="/texturas-sonoras/en/" class="btn-primary-bp">
+              Explore Texturas Sonoras
             </a>
             <a href="https://texturas-sonoras.streamlit.app/" class="btn-secondary-bp" target="_blank" rel="noopener">
-              Ir al App
+              Go to App
             </a>
           </div>
           <div class="waitlist-section">
-            <p class="waitlist-text">Recibe actualizaciones cuando lancemos nuevas herramientas</p>
+            <p class="waitlist-text">Get updates when we launch new tools</p>
             <a href="https://tally.so/r/ODPKyR" class="btn-waitlist" target="_blank" rel="noopener">
-              Unirme a la lista de espera →
+              Join the waitlist →
             </a>
           </div>
         </div>
@@ -70,13 +70,13 @@
         if (sessionStorage.getItem('lang_chosen')) return;
         var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
         var isSpanish = lang.startsWith('es');
-        if (!isSpanish) {
+        if (isSpanish) {
           sessionStorage.setItem('lang_chosen', '1');
-          window.location.replace('/en/');
+          window.location.replace('/');
         }
         sessionStorage.setItem('lang_chosen', '1');
       })();
     </script>
-    <script src="js/atoms.js"></script>
+    <script src="../js/atoms.js"></script>
   </body>
 </html>
