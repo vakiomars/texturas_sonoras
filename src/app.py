@@ -28,7 +28,11 @@ st.markdown(
 )
 
 st.header("Paso 1 - Sube tu audio")
-uploaded = st.file_uploader("Sube tu audio base", type=["wav", "mp3"])
+uploaded = st.file_uploader("Sube tu audio base", type=["wav", "mp3", "ogg", "flac", "m4a", "aac", "mp4", "3gp", "wma", "webm"])
+st.markdown("---")
+st.caption("📱 ¿Estás en el teléfono? Graba directamente:")
+audio_recording = st.audio_input("Grabar audio")
+audio_source = uploaded or audio_recording
 
 MAX_INPUT_SECONDS = 45
 MAX_OUTPUT_SECONDS = 90
@@ -48,12 +52,12 @@ if "busy" not in st.session_state:
     st.session_state.busy = False
 
 
-if uploaded:
-    filename = uploaded.name
-    file_format = filename.rsplit(".", 1)[-1].lower() if "." in filename else "unknown"
+if audio_source:
+    filename = getattr(audio_source, "name", "recording.wav")
+    file_format = filename.rsplit(".", 1)[-1].lower() if "." in filename else "wav"
 
     # Cargar a mono 48 kHz para coherencia con motores de juego
-    y, sr = librosa.load(uploaded, sr=SR, mono=True)
+    y, sr = librosa.load(audio_source, sr=SR, mono=True)
     input_seconds = len(y) / sr
 
     log_event(
@@ -209,4 +213,4 @@ if uploaded:
         finally:
             st.session_state.busy = False
 else:
-    st.info("Sube un audio para comenzar.")
+    st.info("Sube un audio o graba desde el micrófono para comenzar.")
