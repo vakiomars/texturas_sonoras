@@ -226,8 +226,8 @@ p {
   left: 0;
   width: 100%;
   z-index: 99;
-  -webkit-transition: all 0.3s ease-out 0s;
-  transition: all 0.3s ease-out 0s;
+  -webkit-transition: background-color 0.3s ease-out, border-color 0.3s ease-out, -webkit-box-shadow 0.3s ease-out, -webkit-backdrop-filter 0.3s ease-out;
+  transition: background-color 0.3s ease-out, border-color 0.3s ease-out, box-shadow 0.3s ease-out, backdrop-filter 0.3s ease-out;
   background: var(--bp-header);
   border-bottom: 1px solid rgba(248, 250, 252, 0.08);
 }
@@ -242,8 +242,8 @@ p {
   border-bottom: 1px solid rgba(248, 250, 252, 0.1);
   -webkit-box-shadow: 0 12px 28px rgba(2, 6, 23, 0.24);
   box-shadow: 0 12px 28px rgba(2, 6, 23, 0.24);
-  -webkit-transition: all 0.3s ease-out 0s;
-  transition: all 0.3s ease-out 0s;
+  -webkit-transition: background-color 0.3s ease-out, border-color 0.3s ease-out, -webkit-box-shadow 0.3s ease-out, -webkit-backdrop-filter 0.3s ease-out;
+  transition: background-color 0.3s ease-out, border-color 0.3s ease-out, box-shadow 0.3s ease-out, backdrop-filter 0.3s ease-out;
 }
 
 .sticky .navbar {
@@ -253,8 +253,8 @@ p {
 .navbar {
   padding: 12px 0;
   position: relative;
-  -webkit-transition: all 0.3s ease-out 0s;
-  transition: all 0.3s ease-out 0s;
+  -webkit-transition: padding 0.3s ease-out;
+  transition: padding 0.3s ease-out;
 }
 
 .navbar-brand {
@@ -309,12 +309,28 @@ p {
 
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
   .ud-header {
-    position: relative;
+    position: fixed;
+    top: 0;
+    -webkit-transition: none;
+    transition: none;
+    -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+    -webkit-box-shadow: 0 12px 28px rgba(2, 6, 23, 0.24);
+    box-shadow: 0 12px 28px rgba(2, 6, 23, 0.24);
+    border-bottom: 1px solid rgba(248, 250, 252, 0.1);
   }
 
   .sticky {
-    position: sticky;
+    position: fixed;
     top: 0;
+    -webkit-transition: none;
+    transition: none;
+    -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+  }
+
+  body {
+    padding-top: 78px;
   }
 
   .navbar {

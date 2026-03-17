@@ -4,18 +4,36 @@
   const udHeader = document.querySelector(".ud-header");
   const navbarToggler = document.querySelector(".navbar-toggler");
   const navbarCollapse = document.querySelector(".navbar-collapse");
+  const mobileHeaderMedia = window.matchMedia("(max-width: 991px)");
+  let isHeaderSticky = false;
+
+  const syncHeaderStickyState = () => {
+    if (!udHeader) {
+      return;
+    }
+
+    if (mobileHeaderMedia.matches) {
+      if (isHeaderSticky) {
+        udHeader.classList.remove("sticky");
+        isHeaderSticky = false;
+      }
+      return;
+    }
+
+    const stickyThreshold = udHeader.offsetTop;
+    const shouldStick = window.pageYOffset > stickyThreshold;
+
+    if (shouldStick === isHeaderSticky) {
+      return;
+    }
+
+    udHeader.classList.toggle("sticky", shouldStick);
+    isHeaderSticky = shouldStick;
+  };
 
   // ======= Sticky
-  window.onscroll = function () {
-    if (udHeader) {
-      const sticky = udHeader.offsetTop;
-
-      if (window.pageYOffset > sticky) {
-        udHeader.classList.add("sticky");
-      } else {
-        udHeader.classList.remove("sticky");
-      }
-    }
+  const handleScroll = function () {
+    syncHeaderStickyState();
 
     // show or hide the back-top-top button
     const backToTop = document.querySelector(".back-to-top");
@@ -30,6 +48,9 @@
       }
     }
   };
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  window.addEventListener("resize", syncHeaderStickyState);
+  syncHeaderStickyState();
 
   //===== close navbar-collapse when a  clicked
   if (navbarToggler && navbarCollapse) {
