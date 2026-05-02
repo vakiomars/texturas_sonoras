@@ -4,6 +4,11 @@ Generador de texturas sonoras (MVP) basado en **granular synthesis (OLA Hann)** 
 
 Incluye un núcleo **MGI (Motor Generativo Iterativo)**: operador iterativo con ancla \(\alpha\), restricciones \(C\), proyección \(\Pi_C\) y **control activo** (backtracking sobre \(\alpha\)) para estabilidad (headroom + energía + huella estadística).
 
+## Demo pública
+
+- App: https://texturas-sonoras.streamlit.app/
+- Landing: https://blendedpareto.com/texturas-sonoras/
+
 ## Qué es (en una línea)
 Subes un audio corto (p.ej. 10s) y el motor genera una textura más larga manteniendo coherencia timbral (sin clicks ni cortes perceptibles en pruebas).
 
